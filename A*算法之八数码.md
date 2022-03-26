@@ -8,9 +8,10 @@
 ![this is a picture](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9jb3Vyc2VyYS5jcy5wcmluY2V0b24uZWR1L2FsZ3M0L2Fzc2lnbm1lbnRzLzhwdXp6bGUvZ2FtZS10cmVlLnBuZw?x-oss-process=image/format,png)
 ## 数据结构
 ```
-public static int[] start={2,8,3,1,6,4,7,0,5};
-public static int[] end=  {1,2,3,8,0,4,7,6,5};
+public static int[] start={0,1,4,2,7,6,3,8,5};
+public static int[] end=  {1,2,3,4,5,6,7,8,0};
 public static int num_end =Eight_digit.Inver_end(end);
+public static int index_z =Eight_digit.findnum(end,0);
 TreeMap<Integer,Node> open=new TreeMap<>();
 Set<Node> closed=new HashSet<>();
 ```
@@ -140,18 +141,35 @@ public static Node down(Node no){
 ```
 public static int getH(int []temp){
         int num=0;
-        int mum=0;
+        int s=0;
+        if(findnum(temp,0)!=index_z)
+            s=1;
         for(int i=0;i<9;i++){
             int n=Math.abs(findnum(temp,end[i])-i);
-            if(n!=0)mum++;
+            int next=i;
+            {          //计算棋盘顺时针时下一个元素位置
+                if((next+1)%3==0){
+                    next+=3;
+                    if(next>=9){
+                        next-=4;
+                    }
+                }else if(next%3==0){
+                    next-=3;
+                }else {
+                    next+=1;
+                }if(temp[i]!=end[i]){
+                s+=2;
+                }
+            }
             if(n>3){
                 n=n/3;
                 num+=(n+n%3);
             }else {
                 num+=n;
             }
+            num+=3*s;
         }
-        return num+mum;
+        return num;
     }
 ```
 ### A*算法实例
