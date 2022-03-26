@@ -1,8 +1,11 @@
 # A*算法之八数码
 [本文链接](https://github.com/arnojack/My-java-learning-/blob/main/A*%E7%AE%97%E6%B3%95%E4%B9%8B%E5%85%AB%E6%95%B0%E7%A0%81.md)
-- open采用红黑树自动排序，closed采用hashmap存储和查找。
+- open采用红黑树自动排序，closed采用set存储和查找。
 
-- 估价函数采用每对不同两数之间间隔的步数之和
+-  : Nilsson's sequence score 尼尔森序列分数 t = h+3*s
+    1. h是当前节点与目标节点的曼哈顿距离
+    2. 假如当前棋盘中心和目标状态的中心不匹配，s加1分
+    3. 假如当前方块顺时针方向上的第一个方块不是目标状态中它顺时针方向上第一个方块，那么s加2分
 
 - 关于java要注意对象的引用和赋值，equals和hashcode的重写
 ![this is a picture](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9jb3Vyc2VyYS5jcy5wcmluY2V0b24uZWR1L2FsZ3M0L2Fzc2lnbm1lbnRzLzhwdXp6bGUvZ2FtZS10cmVlLnBuZw?x-oss-process=image/format,png)
