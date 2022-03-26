@@ -12,7 +12,7 @@ public static int[] start={2,8,3,1,6,4,7,0,5};
 public static int[] end=  {1,2,3,8,0,4,7,6,5};
 public static int num_end =Eight_digit.Inver_end(end);
 TreeMap<Integer,Node> open=new TreeMap<>();
-HashMap<Integer,Node> closed=new HashMap<>();
+Set<Node> closed=new HashSet<>();
 ```
 ## 主要函数
 ### 自定义Node
@@ -140,8 +140,10 @@ public static Node down(Node no){
 ```
 public static int getH(int []temp){
         int num=0;
+        int mum=0;
         for(int i=0;i<9;i++){
             int n=Math.abs(findnum(temp,end[i])-i);
+            if(n!=0)mum++;
             if(n>3){
                 n=n/3;
                 num+=(n+n%3);
@@ -149,7 +151,7 @@ public static int getH(int []temp){
                 num+=n;
             }
         }
-        return num;
+        return num+mum;
     }
 ```
 ### A*算法实例
@@ -160,6 +162,9 @@ public void Digit(Integer key,Node head){
         while (true){
             int in=open.firstKey();
             Node index=open.get(in);
+            if(temp.getG()==index.getG()&&!temp.equals(index)){
+                temp=temp.getParent();
+            }
             open.remove(in,index);
 
             temp.setNext(index);
@@ -167,7 +172,7 @@ public void Digit(Integer key,Node head){
             temp=index;
             if(getH(temp.getState())==0)break;
 
-            closed.put(in,index);
+            closed.add(index);
             Node[] a=new Node[4];
             a[0]=right(index);
             a[1]=left(index);
@@ -175,17 +180,12 @@ public void Digit(Integer key,Node head){
             a[3]=up(index);
             Boolean isanswer=false;
             for(int i=0;i<4;i++){
-                if(closed.containsValue(a[i]))
+                if(closed.contains(a[i]))
                     continue;
                 if( InverseNumber(a[i].getState(),num_end) && a[i].isMove()){
                     isanswer=true;
                     open.put(a[i].getF(),a[i]);
                 }
             }
-            if(!isanswer){
-                temp=temp.getParent();
-            }
         }
-
-    }
 ```
