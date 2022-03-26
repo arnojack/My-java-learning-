@@ -1,5 +1,5 @@
 # A*算法之八数码
-[本文链接](https://github.com/arnojack/My-java-learning-/edit/main/A*%E7%AE%97%E6%B3%95%E4%B9%8B%E5%85%AB%E6%95%B0%E7%A0%81)
+[本文链接](https://github.com/arnojack/My-java-learning-/blob/main/A*%E7%AE%97%E6%B3%95%E4%B9%8B%E5%85%AB%E6%95%B0%E7%A0%81.md)
 - open采用红黑树自动排序，closed采用hashmap存储和查找。
 
 - 估价函数采用每对不同两数之间间隔的步数之和
