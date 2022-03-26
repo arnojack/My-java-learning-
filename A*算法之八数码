@@ -3,4 +3,3 @@
 -open采用红黑树自动排序，closed采用hashmap存储和查找。
 -关于java要注意对象的引用和赋值，equals和hashcode的重写
 ## 数据结构
-<>
